@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <string name="profile">Profile</string>
+    <string name="my_order">My Order</string>
+    <string name="cart">Cart</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="from_price">From %s</string>
+    <string name="price">Price \u20B9 %s</string>
+    <string name="rating">%s \u2605</string>
+
+</resources>

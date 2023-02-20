@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.HomeFragment">
+
+    <include
+        android:id="@+id/home_bar"
+        layout="@layout/app_bar_layout"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/home_bar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                tools:listitem="@layout/items_recycler_view" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="25dp"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:text="Recent Search"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recent_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/recent_search_item"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:text="Track in Detail"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:src="@drawable/banner"
+                android:layout_margin="10dp"
+                android:background="@drawable/image_rounded"
+                android:layout_height="220dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
