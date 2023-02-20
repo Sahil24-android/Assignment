@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.assignment.data.PrefManager
 import okhttp3.*
@@ -14,6 +15,8 @@ import org.json.JSONObject
 class LoginActivity : AppCompatActivity() {
     private lateinit var prefManager: PrefManager
     private val client = OkHttpClient()
+    private lateinit var email:TextView
+    private lateinit var password:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -22,11 +25,11 @@ class LoginActivity : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.login_button)
         loginButton.setOnClickListener {
             // Get the email and password from the input fields
-            val email = findViewById<EditText>(R.id.email_login).text.toString()
-            val password = findViewById<EditText>(R.id.password_login).text.toString()
+            email = findViewById<EditText>(R.id.email_login)
+            password = findViewById<EditText>(R.id.password_login)
             val requestBody = FormBody.Builder()
-                .add("email", email)
-                .add("password", password)
+                .add("email", email.text.toString())
+                .add("password", password.text.toString())
                 .add("device_id", "exzcde")
                 .build()
 
@@ -62,11 +65,21 @@ class LoginActivity : AppCompatActivity() {
             prefManager.setLogin(true)
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
         } else {
+            val errorMessage = jsonObject.getString("message")
+            runOnUiThread {
+                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                email.text = null
+                password.text = null
+            }
         }
 
     }
 
     private fun handleLoginError() {
-        Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show()
+        runOnUiThread {
+            Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show()
+            email.text = null
+            password.text = null
+        }
     }
 }
